@@ -43,6 +43,8 @@ app.post('/login', async (req,res) => {
     const userDoc = await User.findOne({username})
     const authenticate = bcrypt.compareSync(password, userDoc.password)
     
+    res.json("/login reached!");
+
     if (authenticate) {
         //logged in
         // use callback here but then or await will work too
