@@ -12,7 +12,6 @@ const uploadMiddleware = multer({ dest: 'uploads/' })
 const fs = require('fs')
 const scanResume = require('./scanResume')
 const scanResumeText = require('./scanResumeText')
-const cors = require('cors')
 const corsOptions = require('./config/corsOptions')
 require('dotenv').config()
 
@@ -20,7 +19,6 @@ const salt = bcrypt.genSaltSync(10)
 const secret = process.env.SECRET
 
 app.use(cors(corsOptions))
-// app.use(cors({credentials:true,origin:'http://localhost:3000'})) //middleware
 app.use(express.json()) //middleware
 app.use(cookieParser())
 
