@@ -18,6 +18,7 @@ const salt = bcrypt.genSaltSync(10)
 const secret = process.env.SECRET
 
 app.use(cors({credentials:true,origin:'https://skillglance.onrender.com'})) //middleware
+// app.use(cors({credentials:true,origin:'http://localhost:3000'})) //middleware
 app.use(express.json()) //middleware
 app.use(cookieParser())
 
