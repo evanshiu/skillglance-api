@@ -67,7 +67,7 @@ app.get('/profile', (req,res) => {
         if (err) throw err;
         res.json(info);
     });
-  });
+});
   
 app.post('/logout', (req,res) => {
     res.cookie('token', '').json('ok');
@@ -76,7 +76,7 @@ app.post('/logout', (req,res) => {
 app.post('/post', async (req,res) => {
     const {token} = req.cookies;
     jwt.verify(token, secret, {}, async (err,info) => {
-        if (err) throw err;
+        if (err) { return res.status(401).json('invalid token') }
         const {title,summary,content} = req.body;
         console.log(content)
         if (!title || !summary ){
@@ -96,7 +96,7 @@ app.post('/post', async (req,res) => {
 app.put('/post', async (req,res) => {
     const {token} = req.cookies
     jwt.verify(token, secret, {}, async (err,info) => {
-        if (err) throw err
+        if (err) { return res.status(401).json('invalid token') }
         const {id,title,summary,content} = req.body
         if (!title || !summary ){
             return res.status(400).json("Input missing.")
